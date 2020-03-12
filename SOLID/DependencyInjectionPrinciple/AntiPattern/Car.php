@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace DependencyInjectionPrinciple\AntiPattern;
 
-use SingleResponsibilityPrinciple\AntiPattern\CarId;
-
 interface Car
 {
     public function getId(): CarID;
