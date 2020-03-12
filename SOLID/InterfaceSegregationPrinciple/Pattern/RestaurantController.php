@@ -12,13 +12,13 @@ class RestaurantController
     private $restaurantRepository;
 
     /**
-     * @var PremiumRestaurantRepositoryRestaurantRepository
+     * @var PremiumRestaurantRepositoryRepository
      */
     private $premiumRestaurantRepository;
 
     public function __construct(
         RestaurantRepository $restaurantRepository,
-        PremiumRestaurantRepositoryRestaurantRepository $premiumRestaurantRepository
+        PremiumRestaurantRepositoryRepository $premiumRestaurantRepository
     ) {
         $this->restaurantRepository = $restaurantRepository;
         $this->premiumRestaurantRepository = $premiumRestaurantRepository;

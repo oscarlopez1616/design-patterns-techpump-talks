@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace InterfaceSegregationPrinciple\Pattern;
 
-interface PremiumRestaurantRepositoryRestaurantRepository
+interface PremiumRestaurantRepositoryRepository
 {
     /**
      * @param RestaurantId $restaurantId
