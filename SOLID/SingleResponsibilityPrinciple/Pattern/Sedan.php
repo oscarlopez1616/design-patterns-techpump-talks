@@ -1,11 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace DependencyInjectionPrinciple\Pattern;
+namespace SingleResponsibilityPrinciple\Pattern;
 
-use SingleResponsibilityPrinciple\AntiPattern\CarId;
-
-class Subway implements Car
+class Sedan implements Car
 {
     /**
      * @var CarId
@@ -33,6 +31,7 @@ class Subway implements Car
     {
         // TODO: Implement getId() method.
     }
+
 
     public function showInfo(): string
     {
