@@ -1,10 +1,12 @@
 {
   "require": {
+    "php": "^7.4.4"
   },
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
-      "Decorator\\": "Decorator/"
+      "Decorator\\": "Decorator/",
+      "VO\\": "VO/"
     }
   }
 }

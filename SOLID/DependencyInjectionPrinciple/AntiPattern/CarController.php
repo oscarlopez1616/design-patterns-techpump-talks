@@ -10,7 +10,7 @@ class CarController
     private function postMechanicalWorkShopAction(CarId $carId): int
     {
         $carCommunicationService = new CarCommunicationService();
-        $carCommunicationService->sendEmailToMechanicalWorkShop($carId);
+        $carCommunicationService->sendPremiumRestaurantEmailToMechanicalWorkShop($carId);
         return 201;
     }
 
