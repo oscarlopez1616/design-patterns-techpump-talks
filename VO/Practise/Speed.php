@@ -57,7 +57,7 @@ class Speed extends ValueObject
      */
     public function addSpeed(Speed $speed): self
     {
-        //TODO
+        //TODO return new Speed with 2 values added
     }
 
     /**
