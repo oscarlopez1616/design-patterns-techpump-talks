@@ -9,6 +9,10 @@ use VO\Pattern\ValueObject;
 class Speed extends ValueObject
 {
 
+    const KM = 'km';
+    const METERS = 'm';
+
+
     private Natural $value;
 
     private string $unit;
@@ -30,12 +34,14 @@ class Speed extends ValueObject
     public static function createSpeedInKilometers(Natural $value): self
     {
        // TODO create a factory method (also called named constructor) which creates a Speed in kilometers
+        return new self($value, self::KM);
     }
 
 
     public static function createSpeedInMeters(Natural $value): self
     {
         // TODO create a factory method (also called named constructor) which creates a Speed in meters
+        return new self($value, self::METERS);
     }
 
     /**
@@ -44,6 +50,9 @@ class Speed extends ValueObject
      */
     private function guard(string $unit): void
     {
+        if (!in_array($unit, [self::METERS, self::KM])) {
+            throw new Exception('not valid unit');
+        }
         /**
          * TODO build a function which throw an Exception whether the unit is not an allowed unit: allowed units are
          * meters and kilometers
@@ -55,9 +64,11 @@ class Speed extends ValueObject
      * @return $this
      * @throws Exception
      */
-    public function addSpeed(Speed $speed): self
+    public function addSpeed(Speed $speed,ProviderSpeedService $providerSpeedService): self
     {
+        $providerSpeedService->speedIsAllowedOrFail($speed);
         //TODO return new Speed with 2 values added
+        return new Speed($this->toKilometers()->getValue()->value() + $speed->toKilometers()->getValue()->value());
     }
 
     /**

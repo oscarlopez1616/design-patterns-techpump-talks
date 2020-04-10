@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+    php:
+        build: php
+        container_name: container_techmpump_talks_front_php
+        working_dir: /application
+        volumes:
+            - type: bind
+              source: ../../../
+              target: /var/www/symfony
+        depends_on:
+            - mysql
+            - redis
+    redis:
+        container_name: container_techmpump_talks_front_redis
+        image: redis:alpine
+        ports:
+            - "6379:6379"
+
+    nginx:
+        container_name: container_techmpump_talks_nginx
+        build:
+            context: nginx
+            args:
+                MAX_EXECUTION_TIME: ${MAX_EXECUTION_TIME}
+                SERVER_NAME: ${SERVER_NAME}
+        ports:
+            - "80:80"
+        volumes:
+            - volume_techmpump_talks_nginx:/var/log/nginx
+        depends_on:
+            - php
+    mysql:
+        container_name: container_techmpump_talks_front_mysql
+        image: mysql:5.7
+        command: --explicit_defaults_for_timestamp=1
+        volumes:
+            - volume_techmpump_talks_mysql:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        ports:
+            - "3306:3306"
+
+    elasticsearch:
+        image: sebp/elk:latest
+        container_name: container_techmpump_talks_elk
+        ports:
+            - "5601:5601"
+            - "9200:9200"
+            - "5044:5044"
+
+volumes:
+    volume_techmpump_talks_nginx:
+    volume_techmpump_talks_mysql:
